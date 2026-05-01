@@ -1,19 +1,28 @@
-import speedtest
-def test_speed():
-    st=speedtest.Speedtest()
+import streamlit as st
+import speedtest 
 
-    print("Testing Speed...")
+st.header("🛜 NetWork Speed Test")
+st.markdown("Must on InterNet or cunnected Wifi")
 
-    download_speed=st.download()/1_000_000
-    upload_speed=st.upload()/1_000_000
-    ping_result=st.results.ping
-    return{
-        'download':round(download_speed,2),
-        'upload':round(upload_speed,2),
-        'ping':ping_result
-    }
-if __name__ == "__main__":
-    speed=test_speed()
-    print(f"⬇️ Download Speed : {speed['download']} Mbps")
-    print(f"⬆️ Upload Speed   : {speed['upload']} Mbps")
-    print(f"🛜 Ping           : {speed['ping']:0.2f} ms")
+if st.button("Run"):
+    try:
+        sp = speedtest.Speedtest()
+
+        with st.spinner("Testing Speed..."):
+            # sp.get_best_server()
+            st.info("its take some time")
+            download_speed = sp.download() / 1_000_000
+            upload_speed = sp.upload() / 1_000_000
+            ping_result = sp.results.ping
+
+            speed={
+                'download': round(download_speed, 2),
+                'upload': round(upload_speed, 2),
+                'ping': ping_result
+            }
+            st.success(f"⬇️ Download Speed : {speed['download']} Mbps")
+            st.success(f"⬆️ Upload Speed   : {speed['upload']} Mbps")
+            st.success(f"🛜 Ping           : {speed['ping']:.2f} ms")
+    except:
+        st.error("check netWork connection")
+

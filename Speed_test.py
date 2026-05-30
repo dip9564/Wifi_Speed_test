@@ -9,7 +9,8 @@ if st.button("Run"):
         sp = speedtest.Speedtest()
 
         with st.spinner("Testing Speed..."):
-            # sp.get_best_server()
+            sp.get_best_server()
+
             st.info("its take some time")
             download_speed = sp.download() / 1_000_000
             upload_speed = sp.upload() / 1_000_000
@@ -23,6 +24,5 @@ if st.button("Run"):
             st.success(f"⬇️ Download Speed : {speed['download']} Mbps")
             st.success(f"⬆️ Upload Speed   : {speed['upload']} Mbps")
             st.success(f"🛜 Ping           : {speed['ping']:.2f} ms")
-    except:
-        st.error("check netWork connection")
-
+    except Exception as e:
+        st.error(f"check netWork connection{e}")

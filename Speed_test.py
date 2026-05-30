@@ -1,7 +1,6 @@
 import streamlit as st
 import speedtest 
 
-st.write("Speedtest file:", speedtest.__file__)
 st.write("Has Speedtest:", hasattr(speedtest, "Speedtest"))
 
 st.header("🛜 NetWork Speed Test")

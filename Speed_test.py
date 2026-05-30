@@ -1,8 +1,8 @@
 import streamlit as st
 import speedtest 
 
-st.write(speedtest.__file__)
-st.write(list(speedtest.__dict__.keys()))
+st.write("Speedtest file:", speedtest.__file__)
+st.write("Has Speedtest:", hasattr(speedtest, "Speedtest"))
 
 st.header("🛜 NetWork Speed Test")
 st.markdown("Must on InterNet or cunnected Wifi")
